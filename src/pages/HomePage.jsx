@@ -1,6 +1,9 @@
 
+//import Home components accessed through the Home Page
+import Home from "../components/home/Home"
+import HomeHeader from "../components/home/HomeHeader"
 
-//overall component for the homepage of site for routing
+//component for routing to Homepage
 function HomePage(){
 
 
@@ -9,12 +12,9 @@ function HomePage(){
 
         <>
         
-        
-        
-            <p>Home page</p>
-        
-        
-        
+            <HomeHeader />
+            <Home />
+
         </>
     )
 
