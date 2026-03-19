@@ -1,19 +1,22 @@
 
 // import globe icon for site logo
 import { FcGlobe } from "react-icons/fc";
+
+//import Link component to to use with router
 import { Link } from "react-router";
 
-//header that users will see when accessing home page
-function HomeHeader(){
+// header used within login and signup pages
+function GeneralHeader(){
+
 
     return(
 
         <>
-        
-            <div className="w-full h-[10vh] flex bg-[#EBEBD3] place-items-center border-b border-b-slate-300 justify-evenly">
+
+            <div className="w-full h-[10vh] flex bg-[#EBEBD3] place-items-center border-b border-b-slate-300">
 
                 {/* site name and logo */}
-                <div className="flex-col">
+                <div className="flex-col ml-[13%] mr-auto">
                     
                     {/* links back to home page */}
                     <Link to={"/"}>
@@ -25,15 +28,8 @@ function HomeHeader(){
 
                 </div>
 
-                {/* overall search bar for homepage*/}
-                <div className="flex place-content-center w-[30%]">
-
-                    <input type="search" placeholder="Find Your Vacation &#127865;" className="w-[66%] border-2 rounded-3xl h-10 bg-white p-3"/>
-
-                </div>
-
                 {/* login and signup links for site */}
-                <div className="flex gap-10">
+                <div className="flex gap-10 mr-[13%]">
 
                     <Link to={"/login"}>
                         <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Login</h1>
@@ -50,8 +46,9 @@ function HomeHeader(){
         
         
         
+        
         </>
     )
 }
 
-export default HomeHeader
+export default GeneralHeader
