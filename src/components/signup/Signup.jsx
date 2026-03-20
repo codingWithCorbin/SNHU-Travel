@@ -16,6 +16,12 @@ function Signup(){
     // holds the list of vacation images that the page cycles through
     const [cycleImages] = useState(["/src/assets/vacation-images/beach-vacation.jpg"])
 
+
+    const handleSubmit = (e) =>{
+
+        e.preventDefault()
+    }
+
     return(
 
         <>
@@ -36,7 +42,7 @@ function Signup(){
 
 
                     {/* right side of signup section with the form elements */}
-                    <form className="h-full w-[50%] rounded-r-2xl p-5">
+                    <form className="h-full w-[50%] rounded-r-2xl p-5" onSubmit={handleSubmit}>
 
                         {/* handles the two different forms */}
                         <div>

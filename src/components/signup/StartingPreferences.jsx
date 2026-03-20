@@ -1,8 +1,36 @@
-
+import { useState } from "react"
 
 // the second section of the form handles initial preferences to suggest vacations
 // based on interests as well as prices
 function StartingPreferences(){
+
+    //set up state for all three pricing options
+    const [hotelPrice, setHotelPrice] = useState(100)
+    const [flightPrice, setFlightPrice] = useState(100)
+    const [rentalPrice, setRentalPrice] = useState(100)
+
+    // set up list state to populate the component showing all interests selected
+    const [interestInput, setInterestInput] = useState("")
+    const [interestsList, setInterestsList] = useState([])
+
+    // function to update the range value as users change it
+    const updatePrice = (e, setter) =>{
+
+        const updateValue = e.target.value
+        setter(updateValue)
+
+    }
+
+    
+    const addToInterests = (e, value) =>{
+
+        if(e.key === "Enter"){
+
+            setInterestsList(prev => [...prev, value])
+            setInterestInput("")
+        }
+        
+    }
 
     return(
 
@@ -17,33 +45,51 @@ function StartingPreferences(){
 
                      <div className="flex flex-col gap-2">
                         <h2 className="text-2xl">Interests / Activites</h2>
-                        <input required placeholder="What do you want to do on vacation?" type="text" className="border rounded-2xl h-8 w-[90%] bg-white p-3"/>
+                        <input value={interestInput} list="interests-input" placeholder="What do you want to do on vacation?"
+                            type="text" className="border rounded-2xl h-8 w-[90%] bg-white p-3"
+                            onChange={(e) => setInterestInput(e.target.value)} onKeyUp={(e) => addToInterests(e,interestInput)}/>
+                        <datalist id="interests-input">
+                            <option value="beach"></option>
+                            <option value="fine dining"></option>
+
+                        </datalist>
                     </div>
 
-                    <div className="h-[50%] w-full">
-                        <textarea readOnly rows={7} className="resize-none h-full w-full border"></textarea>
+                    <div className="h-33 w-full border flex bg-white">
+                        {interestsList.map(interest => (
+
+                            <p>{interest}</p>
+
+                        ))}
                     </div>
+
 
 
                     <div>
 
-                        <h1>Pricing</h1>
+                        <h1 className="text-2xl">Pricing</h1>
 
-                        <div className="flex">
+                        <div className="flex justify-between">
                             
                             <div>
-                                h1
+                                <h1 className="text-xl">Hotels</h1>
+                                <h1>${hotelPrice}.00</h1>
+                                <input value={hotelPrice} min={100} max={2000} step={100} type="range" id="hotel-price" onInput={(e) => updatePrice(e, setHotelPrice)} />
                             </div>
 
 
 
                             <div>
-
+                                <h1 className="text-xl">Flights</h1>
+                                <h1>${flightPrice}.00</h1>
+                                <input value={flightPrice} min={100} max={2000} step={100} type="range" id="hotel-price" onInput={(e) => updatePrice(e, setFlightPrice)} />
                             </div>
 
 
                             <div>
-
+                                <h1 className="text-xl">Rentals</h1>
+                                <h1>${rentalPrice}.00</h1>
+                                <input value={rentalPrice} min={100} max={2000} step={100} type="range" id="hotel-price" onInput={(e) => updatePrice(e, setRentalPrice)} />
                             </div>
 
                         </div>

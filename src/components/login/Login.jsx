@@ -44,8 +44,8 @@ function Login(){
                             </div>
 
                             {/* button to submit login */}
-                            <div className="place-self-center w-[90%] border h-fit rounded-2xl p-2 text-center mt-5 bg-[#1446A0] text-white text-xl">
-                                <button type="submit">Login</button>
+                            <div className="place-self-center w-[90%]">
+                                <button className="cursor-pointer border h-fit w-full rounded-2xl p-2 text-center mt-5 bg-[#1446A0] text-white text-xl" type="submit">Login</button>
                             </div>
                         </form>
 
