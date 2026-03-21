@@ -1,15 +1,16 @@
-
 // import globe icon for site logo
 import { FcGlobe } from "react-icons/fc"
 
 //import Link component to to use with router
 import { Link } from "react-router"
 
-// header used within login and signup pages
-function GeneralHeader(){
 
+
+// header component for the user's mainpage as well as the settings page
+function ProfileHeader(){
 
     return(
+
 
         <>
 
@@ -28,15 +29,15 @@ function GeneralHeader(){
 
                 </div>
 
-                {/* login and signup links for site */}
+                {/* options to go to profile settings and logout back to home page */}
                 <div className="flex gap-10 mr-[13%]">
 
-                    <Link to={"/login"}>
-                        <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Login</h1>
+                    <Link to={"/myaccount/settings"}>
+                        <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">My Account</h1>
                     </Link>
 
-                    <Link to={"/signup"}>
-                        <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Signup</h1>
+                    <Link to={"/"}>
+                        <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Logout</h1>
                     </Link>
 
                 </div>
@@ -46,9 +47,10 @@ function GeneralHeader(){
         
         
         
-        
         </>
     )
+    
 }
 
-export default GeneralHeader
+
+export default ProfileHeader

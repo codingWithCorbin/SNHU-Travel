@@ -21,7 +21,7 @@ function StartingPreferences(){
 
     }
 
-    
+
     const addToInterests = (e, value) =>{
 
         if(e.key === "Enter"){
@@ -31,6 +31,7 @@ function StartingPreferences(){
         }
         
     }
+
 
     return(
 
@@ -55,14 +56,17 @@ function StartingPreferences(){
                         </datalist>
                     </div>
 
-                    <div className="h-33 w-full border flex bg-white">
+                    <div className="h-35 w-full border flex bg-white rounded p-2">
                         {interestsList.map(interest => (
-
-                            <p>{interest}</p>
+                            
+                            <div className="border rounded-2xl mr-4 h-fit w-fit p-2 flex bg-amber-100">
+                                <p>{interest}</p>
+                                <button onClick={() => setInterestsList(prev => prev.filter(val => val !== interest ))} type="button" className="ml-3 text-red-500 font-bold cursor-pointer">X</button> 
+                            </div>
+                            
 
                         ))}
                     </div>
-
 
 
                     <div>

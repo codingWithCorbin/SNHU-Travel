@@ -62,7 +62,7 @@ function Signup(){
                                 //if not the second form, display previous to go back or to complete sign up with submit
                                 :
                                 
-                                 <div className="flex place-self-end mt-15 gap-5">
+                                 <div className="flex place-self-end mt-13 gap-5">
                                     <button className="h-fit w-fit p-2 text-xl border rounded-2xl bg-[#DB3069] text-white cursor-pointer" type="button" onClick={previousForm}>Previous</button>
                                     <button className="h-fit w-fit p-2 text-xl border rounded-2xl bg-[#1446A0] text-white cursor-pointer" type="submit">Submit</button>
                                 </div>

@@ -5,6 +5,8 @@ import {Route, Routes} from 'react-router'
 import HomePage from './pages/HomePage'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
+import ProfilePage from './pages/ProfilePage'
+import SettingsPage from './pages/SettingsPage'
 
 function App() {
   
@@ -27,8 +29,11 @@ function App() {
         {/* routes to login page */}
         <Route path='/login' element={<LoginPage/>}></Route>
 
-
-
+        {/* routes to user's customized page */}
+        <Route path='/myaccount' element={<ProfilePage/>}></Route>
+        
+        {/* routes to users settings */}
+        <Route path='/myaccount/settings' element={<SettingsPage/>}></Route>
 
       </Routes>
 
