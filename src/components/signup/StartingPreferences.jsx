@@ -45,18 +45,23 @@ function StartingPreferences(){
                     <h1 className="place-self-center text-3xl">Preferences</h1>
 
                      <div className="flex flex-col gap-2">
+
                         <h2 className="text-2xl">Interests / Activites</h2>
+
                         <input value={interestInput} list="interests-input" placeholder="What do you want to do on vacation?"
                             type="text" className="border rounded-2xl h-8 w-[90%] bg-white p-3"
                             onChange={(e) => setInterestInput(e.target.value)} onKeyUp={(e) => addToInterests(e,interestInput)}/>
+
                         <datalist id="interests-input">
                             <option value="beach"></option>
                             <option value="fine dining"></option>
 
                         </datalist>
+
                     </div>
 
                     <div className="h-35 w-full border flex bg-white rounded p-2">
+
                         {interestsList.map(interest => (
                             
                             <div className="border rounded-2xl mr-4 h-fit w-fit p-2 flex bg-amber-100">
@@ -78,22 +83,19 @@ function StartingPreferences(){
                             <div>
                                 <h1 className="text-xl">Hotels</h1>
                                 <h1>${hotelPrice}.00</h1>
-                                <input value={hotelPrice} min={100} max={2000} step={100} type="range" id="hotel-price" onInput={(e) => updatePrice(e, setHotelPrice)} />
+                                <input value={hotelPrice} min={100} max={2000} step={100} type="range" onInput={(e) => updatePrice(e, setHotelPrice)} />
                             </div>
-
-
 
                             <div>
                                 <h1 className="text-xl">Flights</h1>
                                 <h1>${flightPrice}.00</h1>
-                                <input value={flightPrice} min={100} max={2000} step={100} type="range" id="hotel-price" onInput={(e) => updatePrice(e, setFlightPrice)} />
+                                <input value={flightPrice} min={100} max={2000} step={100} type="range" onInput={(e) => updatePrice(e, setFlightPrice)} />
                             </div>
-
 
                             <div>
                                 <h1 className="text-xl">Rentals</h1>
                                 <h1>${rentalPrice}.00</h1>
-                                <input value={rentalPrice} min={100} max={2000} step={100} type="range" id="hotel-price" onInput={(e) => updatePrice(e, setRentalPrice)} />
+                                <input value={rentalPrice} min={100} max={2000} step={100} type="range" onInput={(e) => updatePrice(e, setRentalPrice)} />
                             </div>
 
                         </div>

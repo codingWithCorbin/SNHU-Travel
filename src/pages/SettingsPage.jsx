@@ -1,4 +1,5 @@
 import ProfileHeader from "../components/userprofile/ProfileHeader"
+import Settings from "../components/userprofile/Settings"
 
 
 
@@ -15,6 +16,7 @@ function SettingsPage(){
         
         
            <ProfileHeader />
+           <Settings />
         
         
         

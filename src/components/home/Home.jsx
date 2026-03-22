@@ -7,22 +7,31 @@ function Home(){
 
     return(
 
-
         <>
 
             <div className="w-full h-[90vh]">
 
 
+                <div className="ml-[13.5%] mr-[13.5%]">
+
+                    <div>
+
+                        <h1>All Vacations</h1>
+                        <div>
+                            
+                        </div>
+
+                    </div>
 
 
 
 
+
+
+                </div>
 
 
             </div>
-        
-        
-        
         
         </>
     )
