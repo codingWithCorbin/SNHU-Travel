@@ -1,0 +1,15 @@
+
+
+
+Blue: #1446A0
+
+Red: #DB3069
+
+Gold: #F5D547
+
+Beige: #EBEBD3
+
+Grey: #3C3C3B
+
+
+Source: https://coolors.co/1446a0-db3069-f5d547-ebebd3-3c3c3b
