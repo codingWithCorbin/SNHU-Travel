@@ -9,6 +9,33 @@ require("dotenv").config()
 // create a port reference to .env
 const PORT = process.env.PORT
 
+// enable breaking down parts request body
+const bodyparser = require("body-parser")
+
+//enable client communication
+const cors = require("cors")
+
+// set url for client
+const corsOptions = {
+    orgin: "http://localhost:5173/"
+}
+
+// use cors in server with specified url
+app.use(cors(corsOptions))
+
+
+// enable parsing data from client
+app.use(express.json())
+app.use(bodyparser.json())
+
+//import router
+const authRouter = require("./routers/authRouter")
+
+
+
+// enable routes
+app.use("/auth", authRouter)
+
 
 
 

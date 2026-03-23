@@ -1,12 +1,17 @@
 //used to organize and declare routes for the app
 import {Route, Routes} from 'react-router'
 
+import axios from "axios"
+
 //import the needed pages
 import HomePage from './pages/HomePage'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import ProfilePage from './pages/ProfilePage'
 import SettingsPage from './pages/SettingsPage'
+
+// set up base url inorder to reference server url when specifying routes
+axios.defaults.baseURL = "http://localhost:4000/"
 
 function App() {
   

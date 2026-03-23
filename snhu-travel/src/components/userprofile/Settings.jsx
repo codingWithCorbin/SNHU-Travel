@@ -1,6 +1,8 @@
 
 import { useState } from "react"
 
+import { Link } from "react-router"
+
 // component that enables users to make updates to their account
 function Settings(){
 
@@ -20,13 +22,21 @@ function Settings(){
     
     }
 
+    //
+    // currently not set up without database
+    //
+
     return(
 
         <>
 
             <div className="w-full h-full place-items-center">
 
-                <div className="flex flex-col bg-slate-50 h-fit w-[30%] rounded-3xl shadow shadow-gray-600 p-5 mt-30 mb-15">
+                <Link to={"/myaccount"}>
+                    <h1 className="ml-[14%] text-3xl text-[#1446A0] mt-10 hover:text-[#DB3069] hover:underline ">Back to My Page</h1>
+                </Link>
+
+                <div className="flex flex-col bg-slate-50 h-fit w-[30%] rounded-3xl shadow shadow-gray-600 p-5 mt-15 mb-15">
 
                     <div className="flex place-items-center">
 
@@ -116,9 +126,11 @@ function Settings(){
                             
                         </div>
                         
+                        {/* enable submit if in edit mode */}
+                        {/* currently disabled to not submit */}
                         {editMode
 
-                            ? <button className="border text-xl p-2 bg-[#1446A0] text-white rounded-2xl cursor-pointer mt-5">Submit</button>
+                            ? <button type="button" className="border text-xl p-2 bg-[#1446A0] text-white rounded-2xl cursor-pointer mt-5">Submit</button>
                             
                             : null
                         }

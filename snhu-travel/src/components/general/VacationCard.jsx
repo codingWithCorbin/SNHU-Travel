@@ -7,6 +7,22 @@ import { useState } from "react"
 // recieves props object based on database properties
 function VacationCard({id, location, image, activity, hotel, flight, rental}){
 
+    // random array of colors
+    const headerColors = ["#fabfbf", "#f1f5b9", "#c8f1c6", "#c6f1f1", "#c9c6f1", "#e7c6f1", "#5094DE", "#DB504A", "#E3B505", "#74A1B5", "#56A3A6"]
+
+    // get random index from color array
+    const randomizeHeaderColor = () =>{
+
+        const getrandom = Math.floor(Math.random() * headerColors.length)
+
+        return headerColors[getrandom]
+
+    }
+
+    // place random color in state to generate background color
+    const [randomColor] = useState(randomizeHeaderColor())
+    
+
     //current list is a place holder for only local state. will be replaced with user global fav state
     const [testfav, setTestfav] = useState([])
 
@@ -29,31 +45,55 @@ function VacationCard({id, location, image, activity, hotel, flight, rental}){
         
     }
 
+  
 
     return(
 
         <>
 
-            <div className="h-75 w-75 bg-slate-200 rounded-2xl border border-slate-300 bg-cover" style={{backgroundImage: `url(${image})`}}>
+            <div className=" flex flex-col h-85 w-75 rounded-2xl border border-slate-300 bg-cover" style={{backgroundImage: `url(${image})`}}>
 
-                <div className="flex flex-col">
+                <div className="flex w-full h-max p-3 rounded-t-xl mb-auto" style={{background: randomColor}}>
 
-                    <div className="flex w-full h-max bg-red-200 p-3 rounded-t-xl">
+                    <h1 className="text-2xl mr-auto">{activity}</h1>
 
-                        <h1 className="text-2xl mr-auto">{location}</h1>
+                    <button className="cursor-pointer" onClick={() => handleFav(id)}><IoMdHeart size={25} color={favIcon}/></button>
 
-                        <button className="cursor-pointer" onClick={() => handleFav(id)}><IoMdHeart size={25} color={favIcon}/></button>
+                </div>
+
+
+                <div className="flex flex-col  w-full h-fit bg-slate-200 rounded-b-xl p-2">
+
+                    <h1 className="text-2xl">{location}</h1>
+
+                    <hr className="w-[90%] mb-2"/>
+
+                    <div className="flex justify-between">
+
+                        <div>
+                            <h2>Hotel</h2>
+                            <h2>${hotel}</h2>
+                        </div>
+
+                        <div>
+                            <h2>Flight</h2>
+                            <h2>${flight}</h2>
+                        </div>
+
+
+
+                        <div>
+                            <h2>Rental</h2>
+                            <h2>${rental}</h2>
+                        </div>
+
 
                     </div>
-                    
-                   
-
-
-
-
 
 
                 </div>
+
+              
 
             </div>
         

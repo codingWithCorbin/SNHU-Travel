@@ -1,9 +1,9 @@
 //
 //testing purposes only. will be replaced with database
 //
-import { vacations, users } from "../test/testDB"
+import { vacations} from "../test/testDB"
 
-
+//import vacation card layout component
 import VacationCard from "../general/VacationCard"
 
 // component for overall homepage structure and logic
@@ -14,7 +14,7 @@ function Home(){
 
         <>
 
-            <div className="w-full h-[90vh]">
+            <div className="w-full h-screen">
 
 
                 <div className="flex flex-col ml-[13.5%] mr-[13.5%] mt-15 gap-10">
@@ -27,6 +27,7 @@ function Home(){
 
                         <div className="flex justify-start flex-wrap gap-10 mt-10">
 
+                            {/* currently using test data */}
                             {vacations.map(vacation => (
 
                                 <VacationCard id={vacation.id} location={vacation.location} image={vacation?.image} activity={vacation.activity}
@@ -38,7 +39,7 @@ function Home(){
 
                     </div>
                     
-                    {/*   */}
+                    {/*  specifc vacations once database is set up*/}
                     <div>
 
                         <h1 className="text-3xl">Relaxation</h1>
@@ -50,7 +51,7 @@ function Home(){
 
                     </div>
 
-                    {/*   */}
+                    {/*  specifc vacations once database is set up*/}
                    <div>
 
                         <h1 className="text-3xl">Adventure</h1>

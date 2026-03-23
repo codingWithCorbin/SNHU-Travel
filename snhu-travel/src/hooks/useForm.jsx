@@ -5,8 +5,10 @@ import { useState } from "react"
 // takes a list of forms as props to navigate through
 export function useForms(forms){
 
+    //set index state
     const[formIndex, setFormIndex] = useState(0)
 
+    // go to next page
     function nextForm(){
 
         setFormIndex(i => {
@@ -20,6 +22,7 @@ export function useForms(forms){
 
     }
 
+    // go to previous page
     function previousForm(){
 
         setFormIndex(i =>{
@@ -34,6 +37,7 @@ export function useForms(forms){
 
     }
 
+    
     return{
 
         formIndex,

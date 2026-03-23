@@ -1,6 +1,6 @@
 import ProfileHeader from "../components/userprofile/ProfileHeader"
 import Settings from "../components/userprofile/Settings"
-
+import Footer from "../components/general/Footer"
 
 
 
@@ -17,6 +17,7 @@ function SettingsPage(){
         
            <ProfileHeader />
            <Settings />
+           <Footer />
         
         
         

@@ -11,7 +11,7 @@ import StartingPreferences from "./StartingPreferences"
 function Signup(){
 
     //get elements from the form hook to use within signup componenet
-    const {forms, form, formIndex, nextForm, previousForm} = useForms([<AccountInformation/>, <StartingPreferences />])
+    const {form, formIndex, nextForm, previousForm} = useForms([<AccountInformation/>, <StartingPreferences />])
 
     // holds the list of vacation images that the page cycles through
     const [cycleImages] = useState(["/src/assets/vacation-images/beach-vacation.jpg"])
