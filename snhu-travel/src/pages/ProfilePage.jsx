@@ -6,6 +6,7 @@ import Footer from "../components/general/Footer"
 function ProfilePage(){
 
 
+    
     return(
 
         <>

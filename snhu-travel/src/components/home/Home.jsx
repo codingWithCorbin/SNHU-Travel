@@ -9,7 +9,7 @@ import VacationCard from "../general/VacationCard"
 // component for overall homepage structure and logic
 function Home(){
 
-
+    
     return(
 
         <>
