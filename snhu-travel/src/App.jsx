@@ -9,6 +9,7 @@ import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import ProfilePage from './pages/ProfilePage'
 import SettingsPage from './pages/SettingsPage'
+import SearchPage from './pages/SearchPage'
 
 // set up base url inorder to reference server url when specifying routes
 axios.defaults.baseURL = "http://localhost:4000/"
@@ -27,6 +28,9 @@ function App() {
 
         {/* routes to home page */}
         <Route path='/' element={<HomePage/>}></Route>
+
+        {/* routes to search page based on user's input */}
+        <Route path='/search' element={<SearchPage/>}></Route>
 
         {/* routes to signup page */}
         <Route path='/signup' element={<SignupPage/>}></Route>

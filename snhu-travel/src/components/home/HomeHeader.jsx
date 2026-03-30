@@ -3,8 +3,41 @@
 import { FcGlobe } from "react-icons/fc";
 import { Link } from "react-router";
 
+import { useState } from "react";
+import { useNavigate, createSearchParams } from "react-router";
+
+
 //header that users will see when accessing home page
 function HomeHeader(){
+
+    //import navigate to go to the search page
+    const navigate = useNavigate()
+
+    //get user search
+    const [userSearch, setUserSearch] = useState()
+
+    // if a search term is provided, call api for specifc results
+    const handleSearch = (e) =>{
+
+        // make sure input is there to prevent blank query
+        if(userSearch){
+
+            // after inputing value and hitting enter, search will commence
+            if(e.key == "Enter"){
+
+                // navigate to the page with query
+                navigate({
+
+                    // use spcifc route/ component
+                    pathname: "/search",
+
+                    // structure the input using state variable
+                    search: `?${createSearchParams({ inquiry : userSearch})}&page=1&limit=10`
+                })
+            }
+        }
+       
+    }
 
     return(
 
@@ -28,7 +61,8 @@ function HomeHeader(){
                 {/* overall search bar for homepage*/}
                 <div className="flex place-content-center w-[30%]">
 
-                    <input type="search" placeholder="Find Your Vacation &#127865;" className="w-[66%] border-2 rounded-3xl h-10 bg-white p-3"/>
+                    <input value={userSearch} onChange={(e) => setUserSearch(e.target.value)} onKeyUp={handleSearch} type="search" placeholder="Find Your Vacation &#127865;"
+                     className="w-[66%] border-2 rounded-3xl h-10 bg-white p-3" />
 
                 </div>
 

@@ -7,7 +7,7 @@ const mongoose = require("mongoose")
 const Vacation = require("../database/vacationSchema")
 
 //import function to randomize data
-const generateVacationList = require("../constants/generateData")
+const {generateVacationList} = require("../constants/generateData")
 
 
 //connect to database

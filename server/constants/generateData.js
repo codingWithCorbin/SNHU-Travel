@@ -24,7 +24,7 @@ let interestImages = {
     "Attractions": "/src/assets/vacation-images/attractions-vacation.jpg",
     "Music": "/src/assets/vacation-images/music-vacation.jpg",
     "Architecture": "/src/assets/vacation-images/architecture-vacation.jpg",
-    "Photography": "/src/assets/vacation-images/photography-vacation.jpg",
+    "Photography": "/src/assets/vacation-images/photography2-vacation.jpg",
 }
 
 // recieve a random element from a list
@@ -71,4 +71,11 @@ let generateVacationList = () =>{
 //console.log(getList)
 
 //export to seed database
-module.exports = generateVacationList
+module.exports = {
+    
+    generateVacationList,
+    locationList,
+    pricesList,
+    interestList
+
+}

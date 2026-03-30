@@ -2,7 +2,6 @@
 
 const mongoose = require("mongoose")
 
-
 const vacationSchema = new mongoose.Schema({
 
 

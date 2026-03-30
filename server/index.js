@@ -35,16 +35,20 @@ app.use(cors(corsOptions))
 app.use(express.json())
 app.use(bodyparser.json())
 
-//import router
-const authRouter = require("./routers/authRouter")
 
 // try to connect to the database
 mongoose.connect(process.env.MONGODB_CONNECTION)
     .then(() => console.log("Connected to database"))
     .catch((e) => console.log(`Failed to connect: ${e}`))
 
+  
     
+//import router
+const authRouter = require("./routers/authRouter")
+const homeRouter = require("./routers/homeRouter")
+
 // enable routes
+app.use("/", homeRouter)
 app.use("/auth", authRouter)
 
 
