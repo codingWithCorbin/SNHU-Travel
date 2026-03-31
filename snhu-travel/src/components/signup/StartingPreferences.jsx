@@ -1,17 +1,12 @@
-import { useState } from "react"
+
+import { useContext } from "react"
+import { FormContext } from "../../context/contextVariables"
 
 // the second section of the form handles initial preferences to suggest vacations
 // based on interests as well as prices
 function StartingPreferences(){
 
-    //set up state for all three pricing options
-    const [hotelPrice, setHotelPrice] = useState(100)
-    const [flightPrice, setFlightPrice] = useState(100)
-    const [rentalPrice, setRentalPrice] = useState(100)
-
-    // set up list state to populate the component showing all interests selected
-    const [interestInput, setInterestInput] = useState("")
-    const [interestsList, setInterestsList] = useState([])
+    const {hotelPrice, setHotelPrice, flightPrice, setFlightPrice, rentalPrice, setRentalPrice, interestInput, setInterestInput, interestsList, setInterestsList} = useContext(FormContext)
 
     // function to update the range value as users change it
     const updatePrice = (e, setter) =>{
@@ -32,6 +27,7 @@ function StartingPreferences(){
         
     }
 
+    
 
     return(
 

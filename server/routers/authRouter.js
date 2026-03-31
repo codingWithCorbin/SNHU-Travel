@@ -9,6 +9,7 @@ const {userLogin, userSignup} = require("../controllers/authController")
 
 // set up routes with controllers
 authRouter.post("/login", userLogin)
+authRouter.post("/signup", userSignup)
 
 
 

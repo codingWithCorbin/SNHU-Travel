@@ -10,10 +10,13 @@ function SignupPage(){
 
         <>
 
+           
+
             <GeneralHeader />
             <Signup/>
             <Footer />
-        
+
+            
         
         </>
     )

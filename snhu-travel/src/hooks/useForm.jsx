@@ -7,6 +7,7 @@ export function useForms(forms){
 
     //set index state
     const[formIndex, setFormIndex] = useState(0)
+    const[userForm, setUserForm] = useState({})
 
     // go to next page
     function nextForm(){
@@ -36,10 +37,11 @@ export function useForms(forms){
         })
 
     }
-
     
     return{
 
+        userForm,
+        setUserForm,
         formIndex,
         forms,
         form: forms[formIndex],

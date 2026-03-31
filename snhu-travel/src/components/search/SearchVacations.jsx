@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router"
 
 import VacationCard from "../general/VacationCard"
 
+
 import axios from "axios"
 
 // component to handle the search results
@@ -28,6 +29,7 @@ function SearchVacations(){
     // call the api with search input
     useEffect(() => {
 
+        
         const getSearchResults = async () =>{
 
             try{

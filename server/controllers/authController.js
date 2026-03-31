@@ -39,9 +39,19 @@ const userLogin = (req, res) =>{
 
 
 
+const userSignup = () =>{
+
+    return
+
+
+}
+
+
+
 // export all functions to use in router
 module.exports = {
 
     userLogin,
+    userSignup
     
 }

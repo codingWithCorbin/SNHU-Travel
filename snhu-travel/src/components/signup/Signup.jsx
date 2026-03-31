@@ -1,25 +1,67 @@
 //import hooks for page
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useForms } from "../../hooks/useForm"
+import { FormContext } from "../../context/contextVariables"
+import { useNavigate } from "react-router"
 
 //import the components used on this component
 import AccountInformation from "./AccountInformation"
 import StartingPreferences from "./StartingPreferences"
 
+import axios from "axios"
+
 
 // component that handles signup forms to create users
 function Signup(){
 
+    const navigate = useNavigate()
+
+    const {firstname,  lastname,  username, password, hotelPrice,  flightPrice,  rentalPrice,  interestInput, interestsList } = useContext(FormContext)
+
     //get elements from the form hook to use within signup componenet
-    const {form, formIndex, nextForm, previousForm} = useForms([<AccountInformation/>, <StartingPreferences />])
+    const { form, formIndex, nextForm, previousForm} = useForms([<AccountInformation/>, <StartingPreferences />])
 
     // holds the list of vacation images that the page cycles through
     const [cycleImages] = useState(["/src/assets/vacation-images/beach-vacation.jpg"])
 
-
-    const handleSubmit = (e) =>{
+    // function to submit sign up forms
+    const handleSubmit = async (e) =>{
 
         e.preventDefault()
+
+        const formData = {
+            firstname, 
+            lastname, 
+             username, 
+             password, 
+             hotelPrice,  
+             flightPrice,  
+             rentalPrice,  
+             interestInput, 
+             interestsList
+        }
+
+        try{
+
+            const response = await axios.post("/auth/signup", formData)
+
+            if (response.status == 200){
+
+                setTimeout(() => {
+
+                    navigate("/login")
+                    
+                }, 3000);
+            }
+
+
+        }catch(error){
+
+            console.log(error.response.data.error)
+        }
+      
+
+
     }
 
     return(
