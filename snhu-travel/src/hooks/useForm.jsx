@@ -1,5 +1,5 @@
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 // component sets up the multistep form for users to create an account
 // takes a list of forms as props to navigate through
@@ -7,10 +7,19 @@ export function useForms(forms){
 
     //set index state
     const[formIndex, setFormIndex] = useState(0)
-    const[userForm, setUserForm] = useState({})
+
+    // create ref variable to check input fields without refreshing state
+    const validForm = useRef()
+    
 
     // go to next page
     function nextForm(){
+
+        // if not all fields have been completed, user cannot proceed. 
+        if(!validForm.current.reportValidity()){
+
+            return
+        }
 
         setFormIndex(i => {
 
@@ -40,8 +49,7 @@ export function useForms(forms){
     
     return{
 
-        userForm,
-        setUserForm,
+        validForm,
         formIndex,
         forms,
         form: forms[formIndex],

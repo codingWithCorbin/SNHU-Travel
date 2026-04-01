@@ -2,9 +2,12 @@
 import { useContext } from "react"
 import { FormContext } from "../../context/contextVariables"
 
+
 // the second section of the form handles initial preferences to suggest vacations
 // based on interests as well as prices
 function StartingPreferences(){
+
+    let allInterests = ["Fine Dining", "Hiking", "Museums", "Art", "Spa", "Nature", "History", "Touring", "Shopping", "Attractions", "Music", "Architecture", "Photography"]
 
     const {hotelPrice, setHotelPrice, flightPrice, setFlightPrice, rentalPrice, setRentalPrice, interestInput, setInterestInput, interestsList, setInterestsList} = useContext(FormContext)
 
@@ -19,7 +22,7 @@ function StartingPreferences(){
     // upon entering a new interest add it to the list
     const addToInterests = (e, value) =>{
 
-        if(e.key === "Enter"){
+        if(e.key === "Enter" && value){
 
             setInterestsList(prev => [...prev, value])
             setInterestInput("")
@@ -27,7 +30,6 @@ function StartingPreferences(){
         
     }
 
-    
 
     return(
 
@@ -52,8 +54,9 @@ function StartingPreferences(){
                         {/* preset list of interests from input bar */}
                         {/* currently only 2 to test before setting database */}
                         <datalist id="interests-input">
-                            <option value="beach"></option>
-                            <option value="fine dining"></option>
+                            {allInterests.map(interest => (
+                                <option value={interest}></option>
+                            ))}
                         </datalist>
 
                     </div>

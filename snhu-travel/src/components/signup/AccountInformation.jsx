@@ -22,7 +22,7 @@ function AccountInformation(){
                     {/* obtain firstname */}
                     <div className="flex flex-col gap-2">
                         <h2 className="text-2xl">Firstname</h2>
-                        <input required value={firstname} onChange={(e) => setFirstname(e.target.value)} type="text" className="border rounded-2xl h-8 w-[90%] bg-white p-3"/>
+                        <input required pattern="[a-zA-Z0-9]+" value={firstname} onChange={(e) => setFirstname(e.target.value)} type="text" className="border rounded-2xl h-8 w-[90%] bg-white p-3"/>
                     </div>
                     
                     {/* obtain lastname */}

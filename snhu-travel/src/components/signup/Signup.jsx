@@ -1,5 +1,5 @@
 //import hooks for page
-import { useState, useContext } from "react"
+import { useState, useContext} from "react"
 import { useForms } from "../../hooks/useForm"
 import { FormContext } from "../../context/contextVariables"
 import { useNavigate } from "react-router"
@@ -16,10 +16,35 @@ function Signup(){
 
     const navigate = useNavigate()
 
-    const {firstname,  lastname,  username, password, hotelPrice,  flightPrice,  rentalPrice,  interestInput, interestsList } = useContext(FormContext)
+    const {
+
+        firstname, setFirstname,
+        lastname, setLastname,
+        username, setUsername,
+        password, setPassword,
+        hotelPrice, setHotelPrice,
+        flightPrice, setFlightPrice,
+        rentalPrice, setRentalPrice,
+        setInterestInput, 
+        interestsList, setInterestsList 
+
+    } = useContext(FormContext)
+
+    const resetForm = () =>{
+
+        setFirstname("")
+        setLastname("")
+        setUsername("")
+        setPassword("")
+        setInterestInput("")
+        setHotelPrice(100)
+        setFlightPrice(100)
+        setRentalPrice(100)
+        setInterestsList([])
+    }
 
     //get elements from the form hook to use within signup componenet
-    const { form, formIndex, nextForm, previousForm} = useForms([<AccountInformation/>, <StartingPreferences />])
+    const {validForm, form, formIndex, nextForm, previousForm} = useForms([<AccountInformation/>, <StartingPreferences />])
 
     // holds the list of vacation images that the page cycles through
     const [cycleImages] = useState(["/src/assets/vacation-images/beach-vacation.jpg"])
@@ -29,23 +54,15 @@ function Signup(){
 
         e.preventDefault()
 
-        const formData = {
-            firstname, 
-            lastname, 
-             username, 
-             password, 
-             hotelPrice,  
-             flightPrice,  
-             rentalPrice,  
-             interestInput, 
-             interestsList
-        }
+        const formData = {firstname, lastname, username, password, hotelPrice,  flightPrice,  rentalPrice, interestsList}
 
         try{
 
             const response = await axios.post("/auth/signup", formData)
 
-            if (response.status == 200){
+            if (response.status == 201){
+
+                resetForm()
 
                 setTimeout(() => {
 
@@ -84,7 +101,7 @@ function Signup(){
 
 
                     {/* right side of signup section with the form elements */}
-                    <form className="h-full w-[50%] rounded-r-2xl p-5" onSubmit={handleSubmit}>
+                    <form ref={validForm} check className="h-full w-[50%] rounded-r-2xl p-5">
 
                         {/* handles the two different forms */}
                         <div>
@@ -106,7 +123,7 @@ function Signup(){
                                 
                                  <div className="flex place-self-end mt-13 gap-5">
                                     <button className="h-fit w-fit p-2 text-xl border rounded-2xl bg-[#DB3069] text-white cursor-pointer" type="button" onClick={previousForm}>Previous</button>
-                                    <button className="h-fit w-fit p-2 text-xl border rounded-2xl bg-[#1446A0] text-white cursor-pointer" type="submit">Submit</button>
+                                    <button className="h-fit w-fit p-2 text-xl border rounded-2xl bg-[#1446A0] text-white cursor-pointer" type="submit" onClick={handleSubmit}>Submit</button>
                                 </div>
 
                             }

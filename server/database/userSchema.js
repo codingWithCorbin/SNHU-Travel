@@ -1,6 +1,6 @@
 
 const mongoose = require("mongoose")
-const {Vacation} = require("./vacationSchema")
+const Vacation = require("./vacationSchema")
 
 const userSchema = new mongoose.Schema({
 
