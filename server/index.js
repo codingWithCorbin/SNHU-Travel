@@ -46,10 +46,12 @@ mongoose.connect(process.env.MONGODB_CONNECTION)
 //import router
 const authRouter = require("./routers/authRouter")
 const homeRouter = require("./routers/homeRouter")
+const profileRouter = require("./routers/profileRouter")
 
 // enable routes
 app.use("/", homeRouter)
 app.use("/auth", authRouter)
+app.use("/profile", profileRouter)
 
 
 

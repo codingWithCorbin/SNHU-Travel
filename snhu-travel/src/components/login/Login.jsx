@@ -7,8 +7,12 @@ import axios from "axios"
 //import navigator to route to user's page after successful login
 import { useNavigate } from "react-router"
 
+import { useAuth } from "../../hooks/useAuth"
+
 // component that handles login actions by users
 function Login(){
+
+    const{setAuth} = useAuth()
 
     //create navigate variable
     const navigate = useNavigate()
@@ -35,15 +39,15 @@ function Login(){
             // check if status is ok
             if(response.status == 200){
 
-                //test message alert
-                alert("Welcome user!")
+                //place user information in context state
+                setAuth(response.data)
 
                 // navigate to user page after 3 seconds
                 setTimeout(() => {
 
                     navigate("/myaccount")
 
-                }, 3000);
+                }, 1000);
             }
 
         }catch(error){
