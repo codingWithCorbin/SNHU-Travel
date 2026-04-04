@@ -1,6 +1,7 @@
 
 
 const User = require("../database/userSchema")
+const Vacation = require("../database/vacationSchema")
 const bcrypt = require("bcrypt")
 
 const updateUserSettings = async (req, res) => {
@@ -81,7 +82,36 @@ const updateUserSettings = async (req, res) => {
 }
 
 
+const getUserProfile = async (req, res) =>{
+
+    const {userId} = req.body
+
+    try{
+
+        const findUser = await User.findById(userId)
+
+        if(!findUser){
+
+            return res.status(400).json({"error": "User ID was not found."})
+        }
+
+        const topVacations = await Vacation.find({_id: findUser.topChoices})
+
+        const recommendationList = await Vacation.find({interest: findUser.interests})
+
+        return res.status(200).json({"topVacations": topVacations, "recommendationList": recommendationList})
+
+
+    }catch(error){
+
+        console.log(error)
+        return res.status(400).json({"error": "Problem occurred in getting profile details."})
+    }
+
+}
+
 
 module.exports = {
-    updateUserSettings
+    updateUserSettings,
+    getUserProfile
 }

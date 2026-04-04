@@ -1,6 +1,7 @@
 
 
 const Vacation = require("../database/vacationSchema")
+const User = require("../database/userSchema")
 
 // route to get all vacations for home page
 const getAllVacations = async (req, res) => {
@@ -58,9 +59,56 @@ const getSearch = async (req, res) => {
 }
 
 
+const updateTopChoices = async (req, res) =>{
+
+    const {userId, id} = req.body
+
+    try{
+
+        const findUser = await User.findById(userId)
+
+        if(!findUser){
+
+            return res.status(400).json({"error": "Not able to find user."})
+        }
+
+        if(findUser.topChoices.includes(id)){
+
+            await findUser.updateOne({
+
+                $pull : {topChoices: id}
+            })
+
+        }else{
+
+            await findUser.updateOne({
+
+                $push : {topChoices: id}
+            })
+
+        }
+
+        await findUser.save()
+
+        return res.status(200).json({"message": "Update successful"})
+
+
+    }catch(error){
+
+        console.log(error)
+
+        return res.status(400).json({"error": "Problem occurred during update."})
+
+    }
+
+
+}
+
+
 
 module.exports = {
 
     getAllVacations,
-    getSearch
+    getSearch,
+    updateTopChoices
 }

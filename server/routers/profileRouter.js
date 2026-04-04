@@ -1,11 +1,13 @@
 
 const express = require("express")
 const profileRouter = express.Router()
-const {updateUserSettings} = require("../controllers/profileController")
+const {updateUserSettings, getUserProfile} = require("../controllers/profileController")
 
 
 
 profileRouter.patch("/settings", updateUserSettings)
+profileRouter.post("/user-page", getUserProfile)
+
 
 
 

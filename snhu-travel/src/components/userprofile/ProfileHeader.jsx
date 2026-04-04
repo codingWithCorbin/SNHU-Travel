@@ -33,7 +33,7 @@ function ProfileHeader(){
                 <div className="flex gap-10 mr-[13%]">
 
                     <Link to={"/myaccount/settings"}>
-                        <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">My Account</h1>
+                        <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Settings</h1>
                     </Link>
 
                     <Link to={"/"}>

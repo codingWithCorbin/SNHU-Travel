@@ -5,13 +5,14 @@ const homeRouter = express.Router()
 const paginate = require("../middleware/paginateResults")
 const Vacation = require("../database/vacationSchema")
 
-const {getAllVacations, getSearch} = require("../controllers/homeController")
+const {getAllVacations, getSearch, updateTopChoices} = require("../controllers/homeController")
 
 
 
 
 homeRouter.get("/vacations", getAllVacations)
 homeRouter.get("/search", paginate(Vacation), getSearch)
+homeRouter.put("/update-fav", updateTopChoices)
 
 
 

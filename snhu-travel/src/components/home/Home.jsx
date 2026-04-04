@@ -5,8 +5,12 @@ import VacationCard from "../general/VacationCard"
 import axios from "axios"
 import { useState, useEffect } from "react"
 
+import { useAuth } from "../../hooks/useAuth"
+
 // component for overall homepage structure and logic
 function Home(){
+
+    const {auth} = useAuth()
 
     //create list for all vacations
     const [overallList, setOverallList] = useState([])
@@ -76,7 +80,7 @@ function Home(){
                             {/* random list of vacations */}
                             {discoverList.map(vacation => (
 
-                                <VacationCard id={vacation.id} location={vacation.location} image={vacation?.image} interest={vacation.interest}
+                                <VacationCard id={vacation?._id} location={vacation.location} image={vacation?.image} interest={vacation.interest}
                                 hotel={vacation.hotel} flight={vacation.flight} rental={vacation.rental} /> 
 
                             ))}
@@ -95,7 +99,7 @@ function Home(){
                             {/* list of relaxing vacations */}
                             {relaxationList.map(vacation => (
 
-                                <VacationCard id={vacation.id} location={vacation.location} image={vacation?.image} interest={vacation.interest}
+                                <VacationCard id={vacation._id} location={vacation.location} image={vacation?.image} interest={vacation.interest}
                                 hotel={vacation.hotel} flight={vacation.flight} rental={vacation.rental} /> 
 
                             ))}
@@ -114,7 +118,7 @@ function Home(){
                             {/* list of adventures */}
                             {adventureList.map(vacation => (
 
-                                <VacationCard id={vacation.id} location={vacation.location} image={vacation?.image} interest={vacation.interest}
+                                <VacationCard id={vacation._id} location={vacation.location} image={vacation?.image} interest={vacation.interest}
                                 hotel={vacation.hotel} flight={vacation.flight} rental={vacation.rental} /> 
 
                             ))}

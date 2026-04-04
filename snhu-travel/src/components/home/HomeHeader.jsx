@@ -6,9 +6,13 @@ import { Link } from "react-router";
 import { useState } from "react";
 import { useNavigate, createSearchParams } from "react-router";
 
+import { useAuth } from "../../hooks/useAuth";
+
 
 //header that users will see when accessing home page
 function HomeHeader(){
+
+    const {auth} = useAuth()
 
     //import navigate to go to the search page
     const navigate = useNavigate()
@@ -66,16 +70,37 @@ function HomeHeader(){
 
                 </div>
 
-                {/* login and signup links for site */}
+                {/* options depending on if a user is signed in */}
                 <div className="flex gap-10">
 
-                    <Link to={"/login"}>
-                        <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Login</h1>
-                    </Link>
+                    {/* if signed in, options to go to account if returning to home or to logout*/}
+                    {/* if not signed in, options to login or signup */}
+                    {auth._id 
+                        ?
+                        
+                        <>
+                            <Link to={"/myaccount"}>
+                                <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">My Account</h1>
+                            </Link>
 
-                    <Link to={"/signup"}>
-                        <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Signup</h1>
-                    </Link>
+                            <Link to={"/"}>
+                                <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Logout</h1>
+                            </Link>
+                        </>
+
+                        :
+                        
+                        <>
+                            <Link to={"/login"}>
+                                <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Login</h1>
+                            </Link>
+
+                            <Link to={"/signup"}>
+                                <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Signup</h1>
+                            </Link>
+                        </>
+
+                    }
 
                 </div>
 

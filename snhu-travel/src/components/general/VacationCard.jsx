@@ -3,9 +3,16 @@
 import { IoMdHeart } from "react-icons/io"
 import { useState } from "react"
 
+import { useAuth } from "../../hooks/useAuth"
+
+import axios from "axios"
+
+
 // this component will be used in both the home page and user's page to organzie vacation pacake info
 // recieves props object based on database properties
 function VacationCard({id, location, image, interest, hotel, flight, rental}){
+
+    const {auth, setAuth} = useAuth()
 
     // random array of colors
     const headerColors = ["#fabfbf", "#f1f5b9", "#c8f1c6", "#c6f1f1", "#c9c6f1", "#e7c6f1", "#5094DE", "#E3B505", "#74A1B5", "#56A3A6"]
@@ -21,29 +28,34 @@ function VacationCard({id, location, image, interest, hotel, flight, rental}){
 
     // place random color in state to generate background color
     const [randomColor] = useState(randomizeHeaderColor())
-    
-    
-    //current list is a place holder for only local state. will be replaced with user global fav state
-    const [testfav, setTestfav] = useState([])
 
     // place color in state to handle liking and unliking
     const [favIcon, setFavIcon] = useState("#3C3C3B")
 
+
     // function to add and remove vacation id from user's favorites and switches between heart icon colors
-    const handleFav = (id) =>{
+    const handleFav = async (id) =>{
 
-        if(testfav.includes(id)){
-
-            setTestfav(prev => prev.filter(id => id !== id))
-
-        } else{
-
-            setTestfav(prev => [...prev, id])
-        }
-    
         setFavIcon(favIcon === "#3C3C3B" ? "#DB3069" : "#3C3C3B")
+    
+        const userId = auth._id
+
+        try{
+
+            const response = await axios.put("/update-fav", {userId, id})
+            
+            if(response.status == 200){
+
+                console.log(response.data.message)
+            }
+
+        }catch(error){
+
+            console.log(error)
+        }
         
     }
+    
 
   
 
@@ -57,7 +69,12 @@ function VacationCard({id, location, image, interest, hotel, flight, rental}){
 
                     <h1 className="text-2xl mr-auto font-semibold">{location}</h1>
 
-                    <button className="cursor-pointer" onClick={() => handleFav(id)}><IoMdHeart size={25} color={favIcon}/></button>
+                    {auth._id ? 
+
+                        <button className="cursor-pointer" onClick={() => handleFav(id)}><IoMdHeart size={25} color={favIcon}/></button>
+
+                        : null
+                    }
 
                 </div>
 
