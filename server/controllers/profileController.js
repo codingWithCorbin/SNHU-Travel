@@ -62,11 +62,11 @@ const updateUserSettings = async (req, res) => {
 
         if(findUser.pricePreference.rentals !== rentals){
 
-            await findUser.updateOne({$set : {'pricePreference.flights': flights}})
+            await findUser.updateOne({$set : {'pricePreference.rentals': rentals}})
 
         }
-        
-        const updatedUser = await findUser.save()
+
+        const updatedUser = await User.findById(id)
 
         const {password, ...user} = updatedUser._doc
 
@@ -99,7 +99,17 @@ const getUserProfile = async (req, res) =>{
 
         const recommendationList = await Vacation.find({interest: findUser.interests})
 
-        return res.status(200).json({"topVacations": topVacations, "recommendationList": recommendationList})
+        const userPricePref = await Vacation.find({
+
+            $or: [
+
+                {hotel: { $eq: findUser.pricePreference.hotels}},
+                {flight: { $eq: findUser.pricePreference.flights}},
+                {rental: { $eq: findUser.pricePreference.rentals}}
+            ]
+        })
+
+        return res.status(200).json({"topVacations": topVacations, "recommendationList": recommendationList, "userPricePref" : userPricePref})
 
 
     }catch(error){
@@ -111,7 +121,42 @@ const getUserProfile = async (req, res) =>{
 }
 
 
+const userPriceTool = async (req, res) =>{
+
+    const { minRangeHotel,maxRangeHotel,minRangeFlight,maxRangeFlight,minRangeRental, maxRangeRental} = req.body
+
+    try{
+
+        const findVacations = await Vacation.find({
+
+            $and : [
+
+                {hotel: {$gte: minRangeHotel, $lte: maxRangeHotel}},
+                {flight: {$gte: minRangeFlight, $lte: maxRangeFlight}},
+                {rental: {$gte: minRangeRental, $lte: maxRangeRental}},
+
+            ]
+        })
+
+        if(!findVacations){
+
+            return res.status(204).json({"message": "No matching vacations."})
+        }
+
+        return res.status(200).json(findVacations)
+
+
+    }catch(error){
+
+        console.log(error)
+        return res.status(400).json({"error": "Error in finding vacations."})
+    }
+
+
+}
+
 module.exports = {
     updateUserSettings,
-    getUserProfile
+    getUserProfile,
+    userPriceTool
 }
