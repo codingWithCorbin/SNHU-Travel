@@ -51,7 +51,7 @@ function Signup(){
 
     // function to submit sign up forms
     const handleSubmit = async (e) =>{
-
+        
         e.preventDefault()
 
         const formData = {firstname, lastname, username, password, hotelPrice,  flightPrice,  rentalPrice, interestsList}
@@ -78,9 +78,9 @@ function Signup(){
         }
       
 
-
     }
 
+    
     return(
 
         <>
@@ -98,10 +98,8 @@ function Signup(){
                         })}
                     </div>
 
-
-
                     {/* right side of signup section with the form elements */}
-                    <form ref={validForm} check className="h-full w-[50%] rounded-r-2xl p-5">
+                    <form ref={validForm} onKeyDown={(e) => {if(e.key === "Enter") e.preventDefault()}} check className="h-full w-[50%] rounded-r-2xl p-5">
 
                         {/* handles the two different forms */}
                         <div>

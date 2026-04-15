@@ -1,7 +1,7 @@
 
 // import heart icon for user to like to add to their top choices
 import { IoMdHeart } from "react-icons/io"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { useAuth } from "../../hooks/useAuth"
 
@@ -30,7 +30,15 @@ function VacationCard({id, location, image, interest, hotel, flight, rental}){
     const [randomColor] = useState(randomizeHeaderColor())
 
     // place color in state to handle liking and unliking
-    const [favIcon, setFavIcon] = useState("#3C3C3B")
+    //const [favIcon, setFavIcon] = useState("#3C3C3B")
+
+    // place color in state to handle liking and unliking. will remain "checked" or red if liked.
+    const [favIcon, setFavIcon] = useState(
+        auth.topChoices ?
+            auth.topChoices.includes(id) ? "#DB3069" : "#3C3C3B"
+        :
+        null
+    )
 
 
     // function to add and remove vacation id from user's favorites and switches between heart icon colors
@@ -56,8 +64,6 @@ function VacationCard({id, location, image, interest, hotel, flight, rental}){
         
     }
     
-
-  
 
     return(
 

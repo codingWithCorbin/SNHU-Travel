@@ -23,7 +23,7 @@ function StartingPreferences(){
     const addToInterests = (e, value) =>{
 
         if(e.key === "Enter" && value){
-
+            
             setInterestsList(prev => [...prev, value])
             setInterestInput("")
         }

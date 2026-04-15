@@ -88,8 +88,6 @@ const updateTopChoices = async (req, res) =>{
 
         }
 
-        await findUser.save()
-
         return res.status(200).json({"message": "Update successful"})
 
 

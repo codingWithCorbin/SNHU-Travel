@@ -10,8 +10,9 @@ import VacationCard from "../general/VacationCard"
 // main component for user's profile interaction
 function Profile(){
 
+    
     // get auth to get user values
-    const{auth} = useAuth()
+    const{auth, setAuth} = useAuth()
 
     // set up state for starting lists for user's page
     const [topVacations, setTopVacations] = useState([])
@@ -86,6 +87,7 @@ function Profile(){
                     setTopVacations(prev => ([...prev, ...response.data.topVacations]))
                     setRecommendationList(prev => [...prev, ...response.data.recommendationList].splice(0,8))
                     setUserPricePref(prev => [...prev, ...response.data.userPricePref].splice(0,8))
+                    setAuth(response.data.user)
                 }
 
            }catch(error){
@@ -96,7 +98,7 @@ function Profile(){
 
         getProfile()
 
-    }, [])
+    }, [setAuth])
 
 
     return(

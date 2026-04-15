@@ -22,8 +22,12 @@ function paginate(dbModel){
         //set up object to hold query results
         const items = {}
 
+        const totalItems = await dbModel.find({$text: {$search: userInquiry}}).countDocuments().exec()
+        
+        items.total = totalItems
+
         // check if at the end of results to determine any remianing
-        if(end < await dbModel.countDocuments().exec()){
+        if(end < totalItems){
 
             //set up the next page with limit amount
             items.next = {

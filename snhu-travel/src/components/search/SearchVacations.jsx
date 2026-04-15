@@ -1,14 +1,17 @@
 
 import { useEffect, useState } from "react"
-import { useSearchParams } from "react-router"
+import { useSearchParams, useNavigate } from "react-router"
 
 import VacationCard from "../general/VacationCard"
 
+import { TbWorldSearch } from "react-icons/tb";
 
 import axios from "axios"
 
 // component to handle the search results
 function SearchVacations(){
+
+    const navigate = useNavigate()
 
     //unable parsing url
     const [userSearch] = useSearchParams()
@@ -23,8 +26,27 @@ function SearchVacations(){
     // not working completely, need to fix query
     const [page, setPage] = useState(1)
 
+
+    const [pageNum, setPageNum] = useState(0)
+
     //set up data per page
-    const [limit, setLimit] = useState()
+    const [limit, setLimit] = useState(10)
+
+
+    const calculatePages = () =>{
+        
+        const pageButtons = []
+
+        for(let i = 0; i < pageNum; i++){
+
+            pageButtons.push(<button className="w-10 border-2 p-2 text-2xl odd:bg-slate-50 even:bg-slate-300 hover:bg-[#DB3069] cursor-pointer" onClick={() => setPage(i + 1)}>{i + 1}</button>)
+            
+         
+        }
+
+        return <div className="place-self-center mt-10 flex gap-5">{pageButtons}</div>
+
+    }
 
     // call the api with search input
     useEffect(() => {
@@ -34,13 +56,17 @@ function SearchVacations(){
 
             try{
 
+                navigate(`/search?inquiry=${newQuery}&page=${page}&limit=${limit}`)
+
                 //use search, page, and limit for api call
                 const response = await axios.get(`/search?inquiry=${newQuery}&page=${page}&limit=${limit}`)
 
                 if(response.status == 200){
 
                     //set vacations
-                    setVacationResults(prev => [prev, ...response.data.results])
+                    setVacationResults(response.data.results)
+                    setPageNum(Math.ceil(response.data.total / limit) || 1)
+
                 }
 
             }catch(error){
@@ -53,7 +79,7 @@ function SearchVacations(){
         getSearchResults()
 
         //refresh if any variables change
-    }, [newQuery, userSearch, limit])
+    }, [newQuery, userSearch, limit,page])
 
 
 
@@ -61,9 +87,9 @@ function SearchVacations(){
 
         <>
 
-        {!vacationResults.includes(undefined) ?
+        {!vacationResults.length == 0 ?
         
-            <div className="min-h-dvh w-full flex flex-col">
+            <div className="h-full w-full flex flex-col">
 
 
                 <div className="flex flex-col ml-[13.5%] mr-[13.5%] mt-15 gap-10">
@@ -97,11 +123,24 @@ function SearchVacations(){
 
                     </div>
 
+                    <div>
+                       {calculatePages()}
+                    </div>
+
                 </div>
 
             </div>
 
-            : <h1>No results found</h1>}
+            : 
+            
+            <div className="h-[65vh] w-full flex flex-col place-content-center">
+                <div className="flex flex-col place-items-center gap-2">
+                    <h1 className="text-4xl">No results found...</h1>
+                    <TbWorldSearch size={150}/>
+                </div>
+                
+            </div>
+          }
         </>
     )
 }

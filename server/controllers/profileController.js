@@ -109,7 +109,10 @@ const getUserProfile = async (req, res) =>{
             ]
         })
 
-        return res.status(200).json({"topVacations": topVacations, "recommendationList": recommendationList, "userPricePref" : userPricePref})
+
+        const {password, ...user} = findUser._doc
+
+        return res.status(200).json({"topVacations": topVacations, "recommendationList": recommendationList, "userPricePref" : userPricePref, "user": user})
 
 
     }catch(error){
