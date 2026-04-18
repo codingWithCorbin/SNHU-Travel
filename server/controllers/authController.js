@@ -24,29 +24,37 @@ const userLogin = async (req, res) =>{
 
     try{
 
+        // look for a user with a matching username
         const findUser = await User.findOne({username: username})
 
+        // return error if a user with that username does not exist
         if(!findUser){
 
             return res.status(400).json({"error": "Username not found."})
         }
-
+        
+        // if username is in database, check the incoming password with the stored (encrypted) password
         const match = await bcrypt.compare(password, findUser.password)
 
+        // if passwords are not the same, return an error
         if(!match){
 
             return res.status(400).json({"error": "Problem with login"})
 
         }
 
+        //if the password is correct
         if(match){
 
+            // create a new object without the password data
             const {password, ...user} = findUser._doc
 
+            // return the user
             return res.status(200).json(user)
 
         }
-
+    
+    // catch any other during log in attempt
     }catch(error){
 
         console.log(error)
@@ -90,6 +98,7 @@ const userSignup = async (req, res) =>{
         // if user does not exist yet, set up hashed password
         const hashpassword = await bcrypt.hash(password, 10)
 
+        //set up new user with incoming data
         const newUser = new User({
 
             firstname: firstname,
@@ -106,12 +115,14 @@ const userSignup = async (req, res) =>{
 
         })
 
+        // dave the new user to the database
         const saveUser = await newUser.save()
 
+        // send successful creation status
         return res.status(201).json({"message": `Signup for ${saveUser.username} successful!`})
 
 
-        
+    // process error if issue with creating a new user   
     }catch(error){
 
         console.log(error)

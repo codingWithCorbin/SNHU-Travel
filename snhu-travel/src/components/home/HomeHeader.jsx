@@ -12,7 +12,8 @@ import { useAuth } from "../../hooks/useAuth";
 //header that users will see when accessing home page
 function HomeHeader(){
 
-    const {auth} = useAuth()
+    // get user if signed in to display buttons correctly. also remove user from context when logging out 
+    const {auth, setAuth} = useAuth()
 
     //import navigate to go to the search page
     const navigate = useNavigate()
@@ -41,6 +42,15 @@ function HomeHeader(){
             }
         }
        
+    }
+
+    // remove user from context
+    const handleLogout = () =>{
+
+        // set to empty object and go to home page
+        setAuth({})
+        navigate("/")
+
     }
 
     return(
@@ -83,9 +93,9 @@ function HomeHeader(){
                                 <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">My Account</h1>
                             </Link>
 
-                            <Link to={"/"}>
-                                <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Logout</h1>
-                            </Link>
+                            
+                            <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl hover:cursor-pointer text-[#1446A0]" onClick={handleLogout}>Logout</h1>
+                            
                         </>
 
                         :

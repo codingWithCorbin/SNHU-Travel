@@ -7,8 +7,10 @@ import { FormContext } from "../../context/contextVariables"
 // based on interests as well as prices
 function StartingPreferences(){
 
+    // array of all available interests
     let allInterests = ["Fine Dining", "Hiking", "Museums", "Art", "Spa", "Nature", "History", "Touring", "Shopping", "Attractions", "Music", "Architecture", "Photography"]
 
+    // get context ffor the form
     const {hotelPrice, setHotelPrice, flightPrice, setFlightPrice, rentalPrice, setRentalPrice, interestInput, setInterestInput, interestsList, setInterestsList} = useContext(FormContext)
 
     // function to update the range value as users change it
@@ -22,7 +24,7 @@ function StartingPreferences(){
     // upon entering a new interest add it to the list
     const addToInterests = (e, value) =>{
 
-        if(e.key === "Enter" && value){
+        if(e.key === "Enter" && value && !interestsList.includes(value)){
             
             setInterestsList(prev => [...prev, value])
             setInterestInput("")
@@ -46,22 +48,19 @@ function StartingPreferences(){
 
                         <h2 className="text-2xl">Interests / Activites</h2>
 
-                        {/* input for interests to add to their list */}
-                        <input value={interestInput} list="interests-input" placeholder="What do you want to do on vacation?"
-                            type="text" className="border rounded-2xl h-8 w-[90%] bg-white p-3"
-                            onChange={(e) => setInterestInput(e.target.value)} onKeyUp={(e) => addToInterests(e,interestInput)}/>
+                        {/* dropdown selector for interests to add to interests list */}
+                        <select  className="border p-2 rounded" onChange={(e) => setInterestInput(e.target.value)} onKeyUp={(e) => addToInterests(e,interestInput)}>
 
-                        {/* preset list of interests from input bar */}
-                        {/* currently only 2 to test before setting database */}
-                        <datalist id="interests-input">
+                            <option value={""} selected disabled>What do you want to do on vacation?</option>
                             {allInterests.map(interest => (
-                                <option value={interest}></option>
+                                <option value={interest}>{interest}</option>
                             ))}
-                        </datalist>
+
+                        </select>
 
                     </div>
 
-                    {/* display all interests in the box. the "x" enables users to remove the interest */}
+                    {/* display all interests. the "x" enables users to remove the interest */}
                     <div className="h-35 w-full border flex bg-white rounded p-2">
 
                         {interestsList.map(interest => (

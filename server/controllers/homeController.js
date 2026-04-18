@@ -1,5 +1,5 @@
 
-
+// import both schemas
 const Vacation = require("../database/vacationSchema")
 const User = require("../database/userSchema")
 
@@ -34,51 +34,38 @@ const getAllVacations = async (req, res) => {
 // route to get vacations based on search
 const getSearch = async (req, res) => {
 
-    /*
-    const userInquiry = req.query.inquiry
-
-    if (!userInquiry){
-
-        return res.status(204)
-    }
-    */
-    /*
-    const findVacation = await Vacation.find(
-
-        {$text: {$search: userInquiry}}
-    )
-
-    if(!findVacation){
-
-        return res.status(204).json({"message": "No results found."})
-    }
-    */
-    
+    // send the paginated results to client
     res.status(200).json(res.paginateResults)
 
 }
 
-
+// route to handle updating favorites/ removing favorites for users
 const updateTopChoices = async (req, res) =>{
 
+    // parse the user id and vacation id
     const {userId, id} = req.body
 
     try{
 
+        // attempt to get user from the incoming id
         const findUser = await User.findById(userId)
 
+        //if user is not found, return an error
         if(!findUser){
 
             return res.status(400).json({"error": "Not able to find user."})
         }
 
+        //check if the vacatin id is already in top choices (vacation was unfavored)
         if(findUser.topChoices.includes(id)){
 
+            // if it is, remove it from array
             await findUser.updateOne({
 
                 $pull : {topChoices: id}
             })
 
+        // the vacation was favored and needs to be saved
         }else{
 
             await findUser.updateOne({
@@ -88,9 +75,10 @@ const updateTopChoices = async (req, res) =>{
 
         }
 
+        // return success message if update completed
         return res.status(200).json({"message": "Update successful"})
 
-
+    // return any other errors in update attempt
     }catch(error){
 
         console.log(error)

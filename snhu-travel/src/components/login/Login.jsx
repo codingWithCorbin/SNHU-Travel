@@ -9,9 +9,12 @@ import { useNavigate } from "react-router"
 
 import { useAuth } from "../../hooks/useAuth"
 
+import ErrorHeader from "../general/ErrorHeader"
+
 // component that handles login actions by users
 function Login(){
 
+    // used to set the user in state with successful login
     const{setAuth} = useAuth()
 
     //create navigate variable
@@ -80,9 +83,8 @@ function Login(){
 
                 {/* error notifcation displays upon error */}
                 {error ?
-                    <div className="w-full h-[8vh] bg-red-200 place-items-center place-content-center">
-                        <h1 className="text-2xl">Username or password is incorrect. Please try again.</h1>
-                    </div>
+                
+                    <ErrorHeader message="Username or password is incorrect. Please try again."/>
 
                     : null
                 }
@@ -98,7 +100,7 @@ function Login(){
                             {/* section to input username */}
                             <div className="flex flex-col ml-[5%] gap-3">
                                 <h1 className="text-3xl">Username</h1>
-                                <input required value={username} onChange={(e) => setUsername(e.target.value)} type="text" className="border-2 rounded-xl h-10 w-[90%] p-2"/>
+                                <input required pattern="[a-zA-Z0-9]+" value={username} onChange={(e) => setUsername(e.target.value)} type="text" className="border-2 rounded-xl h-10 w-[90%] p-2"/>
                             </div>
 
 

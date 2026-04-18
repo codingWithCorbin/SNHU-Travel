@@ -7,8 +7,10 @@ const authRouter = express.Router()
 const {userLogin, userSignup} = require("../controllers/authController")
 
 
-// set up routes with controllers
+// route for the user to login into their account
 authRouter.post("/login", userLogin)
+
+// route to create a new account
 authRouter.post("/signup", userSignup)
 
 

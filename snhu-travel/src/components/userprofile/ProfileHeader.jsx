@@ -2,12 +2,26 @@
 import { FcGlobe } from "react-icons/fc"
 
 //import Link component to to use with router
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 
-
+import { useAuth } from "../../hooks/useAuth"
 
 // header component for the user's mainpage as well as the settings page
 function ProfileHeader(){
+
+    // used to navigate to settings or to logout
+    const navigate = useNavigate()
+
+    // enables resetting auth context when logging out
+    const {setAuth} = useAuth()
+
+    // function to logout
+    const handleLogout = () =>{
+
+        setAuth({})
+        navigate("/")
+
+    }
 
     return(
 
@@ -36,9 +50,7 @@ function ProfileHeader(){
                         <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Settings</h1>
                     </Link>
 
-                    <Link to={"/"}>
-                        <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl text-[#1446A0]">Logout</h1>
-                    </Link>
+                    <h1 className="hover:text-[#DB3069] hover:underline hover:underline-offset-10 text-3xl hover:cursor-pointer text-[#1446A0]" onClick={handleLogout}>Logout</h1>
 
                 </div>
 

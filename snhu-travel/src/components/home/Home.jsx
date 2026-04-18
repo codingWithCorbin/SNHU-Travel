@@ -2,15 +2,13 @@
 //import vacation card layout component
 import VacationCard from "../general/VacationCard"
 
+// import axios to get vacation data
 import axios from "axios"
-import { useState, useEffect } from "react"
 
-import { useAuth } from "../../hooks/useAuth"
+import { useState, useEffect } from "react"
 
 // component for overall homepage structure and logic
 function Home(){
-
-    const {auth} = useAuth()
 
     //create list for all vacations
     const [overallList, setOverallList] = useState([])
@@ -89,7 +87,7 @@ function Home(){
 
                     </div>
                     
-                    {/*  specifc vacations once database is set up*/}
+                    {/*  vacation list filtered for relaxing interests */}
                     <div>
 
                         <h1 className="text-3xl font-bold">Relaxation</h1>
@@ -108,7 +106,7 @@ function Home(){
 
                     </div>
 
-                    {/*  specifc vacations once database is set up*/}
+                    {/*  vacation list for adventure related interests */}
                    <div>
 
                         <h1 className="text-3xl font-bold">Adventure</h1>

@@ -19,6 +19,7 @@ import AuthProvider from './context/AuthProvider'
 // set up base url inorder to reference server url when specifying routes
 axios.defaults.baseURL = "http://localhost:4000/"
 
+// main app component to set up pages
 function App() {
   
 
@@ -27,6 +28,7 @@ function App() {
 
     
     <>
+      {/* wrap both context providers */}
       <FormProvider>
         <AuthProvider>
           {/* overall list of routes */}

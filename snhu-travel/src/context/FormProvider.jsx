@@ -2,6 +2,7 @@
 import {useState} from "react"
 import { FormContext } from "./contextVariables"
 
+// function to handle separated forms
 function FormProvider({children}){
 
     //create state for the first form

@@ -4,8 +4,10 @@ function paginate(dbModel){
 
     return async (req, res, next) => {
 
+        // parse the inquiry
         const userInquiry = req.query.inquiry
 
+        // return if inquriy is blank
         if (!userInquiry){
 
             return res.status(204)
@@ -22,8 +24,10 @@ function paginate(dbModel){
         //set up object to hold query results
         const items = {}
 
+        // get the total results
         const totalItems = await dbModel.find({$text: {$search: userInquiry}}).countDocuments().exec()
         
+        // add to item object to calculate total pages in client
         items.total = totalItems
 
         // check if at the end of results to determine any remianing

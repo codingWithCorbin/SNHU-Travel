@@ -1,10 +1,13 @@
-
+//import mongoose to create new schema
 const mongoose = require("mongoose")
+
+//import vacation schema to reference it in user
 const Vacation = require("./vacationSchema")
 
+// create the user schema
 const userSchema = new mongoose.Schema({
 
-
+    //first name as a string and required
     firstname: {
 
         type: String,
@@ -12,7 +15,7 @@ const userSchema = new mongoose.Schema({
 
     },
 
-
+    // lastname as a string and required
     lastname: {
 
         type: String,
@@ -20,6 +23,7 @@ const userSchema = new mongoose.Schema({
 
     },
 
+    // username is unique and required
     username: {
 
         type: String,
@@ -27,6 +31,7 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
 
+    // password is a string and required
     password: {
 
         type: String,
@@ -34,6 +39,7 @@ const userSchema = new mongoose.Schema({
 
     },
 
+    // interests is an array of strings
     interests: {
 
         type: [String],
@@ -41,6 +47,7 @@ const userSchema = new mongoose.Schema({
 
     },
 
+    // top choices contains array of vacation ids from favorites
     topChoices: {
 
         type: [mongoose.Schema.Types.ObjectId],
@@ -48,20 +55,24 @@ const userSchema = new mongoose.Schema({
 
     },
 
+    // preference object containing three categories
     pricePreference: {
 
+        // hotel price as a number 
         hotels: {
 
             type: Number,
             required: true
         },
 
+        // flight price as a number 
         flights: {
 
             type: Number,
             required: true
         },
 
+        // rental price as a number
         rentals: {
 
             type: Number,
@@ -72,6 +83,7 @@ const userSchema = new mongoose.Schema({
 
 })
 
+// create a user model based on the schema 
 const User = mongoose.model("User", userSchema)
 
 
