@@ -9,6 +9,8 @@ let pricesList = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200,
 // create each interest topic
 let interestList = ["Fine Dining", "Hiking", "Museums", "Art", "Spa", "Nature", "History", "Touring", "Shopping", "Attractions", "Music", "Architecture", "Photography"]
 
+
+
 // tie the interests to an image
 let interestImages = {
 
@@ -43,7 +45,7 @@ let generateVacationList = () =>{
     let totalVacations = []
 
     // loop to generate vacations
-    for (let i = 0; i < 250; i++){
+    for (let i = 0; i < 500; i++){
 
         // create a new vacation per loop
         let newVacation = {}

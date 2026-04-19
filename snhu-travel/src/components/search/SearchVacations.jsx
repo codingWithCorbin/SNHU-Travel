@@ -4,6 +4,7 @@ import { useSearchParams, useNavigate } from "react-router"
 
 import VacationCard from "../general/VacationCard"
 
+
 //import to create 0 result image
 import { TbWorldSearch } from "react-icons/tb";
 
